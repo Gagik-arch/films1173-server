@@ -1,9 +1,13 @@
 import multer from 'multer';
+import fs from 'fs';
 
 // Set up Multer to store uploaded images
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './uploads/');
+        if (!fs.existsSync('./uploads')) {
+            fs.mkdirSync('./uploads');
+        }
+        cb(null, './uploads');
     },
     filename: (req, file, cb) => {
         cb(null, new Date().getTime() + '-' + file.originalname);

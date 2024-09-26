@@ -1,12 +1,13 @@
 import Movie from '../models/movie.model.js';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
 
 class MoveController {
     static async add(req, res) {
         try {
             const { title, year } = req.body;
             const poster = req.file?.path;
-            console.log(poster);
+
             if (!poster) {
                 return res.status(400).json({ message: 'Poster is required' });
             }
