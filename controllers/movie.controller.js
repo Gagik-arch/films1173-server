@@ -16,7 +16,6 @@ class MoveController {
                 year,
                 poster,
             });
-
             await newMovie.save();
 
             res.status(201).json({
